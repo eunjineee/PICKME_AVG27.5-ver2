@@ -24,6 +24,7 @@ export default new Vuex.Store({
     movie_latest: [],
     movie_mbti: [],
     movie_age: [],
+    search_movie: [],
     users:[],
     ////////////////////////////////////////accounts//////////////
     token: null,
@@ -64,6 +65,9 @@ export default new Vuex.Store({
       state.movie_age = []
       state.movie_age = movie_age
     },
+    SEARCH_MOVIE(state, searchmovie){
+      state.search_movie = searchmovie
+    },
     ////////////////////////////////////////accounts//////////////
     SIGN_UP(state, token) {
       state.token = token
@@ -99,7 +103,6 @@ export default new Vuex.Store({
     RANDOM_USER(state, users){
       state.users = []
       state.users = users
-      console.log(users)
     },
     ////////////////////////////////////////articles//////////////
     ARTICLE_DELETE(state, article_id) {
@@ -158,6 +161,15 @@ export default new Vuex.Store({
         .catch((err) => { 
           console.log(err)
       })
+    },
+    SearchMovie(context, search){
+      axios.get(`${API_URL}/movies/search/${search}`)
+        .then((res) => {
+          context.commit('SEARCH_MOVIE', res.data)
+        })
+        .catch((err) => { 
+          console.log(err)
+        })
     },
     ////////////////////////////////////////accounts//////////////
     signUp(context, payload) {
@@ -263,6 +275,9 @@ export default new Vuex.Store({
       .then((res) => {
         // console.log('랜덤유저 가져오는 중..',res)
         context.commit('RANDOM_USER', res.data)
+      })
+      .catch(() => {
+        
       })
     },
     ////////////////////////////////////////articles//////////////
