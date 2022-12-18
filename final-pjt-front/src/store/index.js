@@ -99,7 +99,6 @@ export default new Vuex.Store({
     RANDOM_USER(state, users){
       state.users = []
       state.users = users
-      console.log(users)
     },
     ////////////////////////////////////////articles//////////////
     ARTICLE_DELETE(state, article_id) {
@@ -110,7 +109,6 @@ export default new Vuex.Store({
   },
   actions: {
     getArticles(context) {
-      console.log('ddd')
       axios({
         method: 'get',
         url: `${API_URL}/articles/article/`,

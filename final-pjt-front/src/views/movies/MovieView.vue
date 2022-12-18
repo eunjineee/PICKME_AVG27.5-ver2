@@ -125,7 +125,6 @@ export default {
     },
     movie_latest() {
       this.movie_latest_data = _.sampleSize(this.$store.state.movie_latest,8)
-      console.log(this.movie_latest_data)
     },
     isLogin() {
       return this.$store.getters.isLogin
@@ -134,14 +133,12 @@ export default {
       this.movie_age_data = _.sampleSize(this.$store.state.movie_age,8)
     },
     mbti() {
-      console.log('얍')
       const mbti = this.$store.state.user.mbti
       if (mbti === 'INFJ' || mbti === 'ISTP' || mbti === 'ENFP') {
         this.movie_mbti_data = _.sampleSize(this.$store.state.movie_latest,8)
       } else if (mbti === 'ESFP' || mbti === 'ESFJ') {
         this.movie_mbti_data = _.sampleSize(this.$store.state.movies,8)
       } else {
-        console.log(mbti)
         this.$store.dispatch('getMovieMbti', mbti)
         this.movie_mbti_data = _.sampleSize(this.$store.state.movie_mbti,8)
         }
@@ -160,11 +157,6 @@ export default {
       this.movie_random_pick_data = _.sampleSize(this.$store.state.movies, 8)
     }
   },
-  // methods:{
-  //   movie_random_pick(){
-  //     this.movie_random_pick_data = _.sampleSize(this.$store.state.movies, 5)
-  //   }
-  // }
 }
 
 </script>
