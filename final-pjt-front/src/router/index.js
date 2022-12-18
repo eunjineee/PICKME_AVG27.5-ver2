@@ -5,6 +5,7 @@ import CreateView from '@/views/articles/CreateView'
 import DetailView from '@/views/articles/DetailView'
 import EditView from '@/views/articles/EditView'
 
+import store from '@/store/index.js'
 import SignUpView from '@/views/accounts/SignUpView'
 import LogInView from '@/views/accounts/LogInView'
 import ProfileView from '@/views/accounts/ProfileView'
@@ -95,21 +96,19 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   const isLoggedIn = true
-//   const authPages = ['']
-//   const isAuthRequired = authPages.includes(to.name)
-//   // 로그인이 필요한 페이지이고, 로그인 되어있지 않으면 로그인 페이지로 이동
-//   // 그렇지 않으면 기존 루트로 이동
-//   if (isAuthRequired && !isLoggedIn) {
-//     next({ name: 'login' })
-//   } else {
-//     next()
-//   }
-//   // 또는 로그인하지 않아도 되는 페이지만 모을 수도 있음.
-//   // const allowAllPages = ['login']
-//   // const isAuthRequired = !allowAllPages.includes(to.name)
-// })
+router.beforeEach((to,from,next) => {
+  const isLogin = store.getters.isLogin
+  const allowPages = [
+    'HomeView','LogInView','SignUpView','MovieView']
+  const forUserPages = !allowPages.includes(to.name)
+
+  if (!isLogin && forUserPages) {
+    alert('로그인이 필요합니다.')
+    next({name:'LogInView'})
+  } else {
+    next()
+  }
+})
 
 
 export default router
