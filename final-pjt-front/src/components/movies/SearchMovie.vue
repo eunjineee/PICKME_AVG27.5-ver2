@@ -44,7 +44,6 @@
     methods:{
       searchMovie(){
         const content = this.inputData
-        console.log('검색하기 전',content)
         if (content != null) {
           this.$store.dispatch('SearchMovie', content)
           this.inputData = ''
