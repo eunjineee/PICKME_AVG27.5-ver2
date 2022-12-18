@@ -69,15 +69,10 @@ export default {
     getmoviedata() {
       const movie_length_latest = this.$store.movie_latest
       if (movie_length_latest === undefined) {
-      const movie_length = this.$store.movies
-      console.log(movie_length)
-      axios.get(`${API_URL}/movies`)
-        .then((res) => {
-          this.$store.dispatch('getMovieData', res.data)
-        })
-        .catch((err) => { 
-          console.log(err)
-        })}
+        axios.get(`${API_URL}/movies`)
+          .then((res) => {
+            this.$store.dispatch('getMovieData', res.data)
+          })}
     },
     getmovielatest() {
       const movie_length = this.$store.movie_latest
