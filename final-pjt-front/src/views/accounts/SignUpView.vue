@@ -20,7 +20,7 @@
                 ID는 5~12글자여야 합니다.
               </b-form-invalid-feedback>
               <b-form-valid-feedback :state="validation1">
-                잘 작성하셨습니다.
+                <br>
               </b-form-valid-feedback>
             </b-form-group>
       
@@ -37,7 +37,7 @@
                 이름은 2~13글자여야 합니다.
               </b-form-invalid-feedback>
               <b-form-valid-feedback :state="validation2">
-                잘 작성하셨습니다.
+                <br>
               </b-form-valid-feedback>
             </b-form-group>
       
@@ -51,10 +51,10 @@
                 required
               ></b-form-input>
               <b-form-invalid-feedback :state="validation3">
-                비밀번호는 4~12자리 이내로 입력해주세요
+                비밀번호는 4~12자리 이내로 입력해주세요.
               </b-form-invalid-feedback>
               <b-form-valid-feedback :state="validation3">
-                잘 작성하셨습니다.
+                <br>
               </b-form-valid-feedback>
             </b-form-group>
       
@@ -72,7 +72,7 @@
                 비밀번호가 위와 일치하지 않습니다.
               </b-form-invalid-feedback>
               <b-form-valid-feedback :state="validation4">
-                잘 작성하셨습니다.
+                <br>
               </b-form-valid-feedback>
             </b-form-group>
             <b-form-group id="input-group-6" label="Age: " label-for="input-6">
