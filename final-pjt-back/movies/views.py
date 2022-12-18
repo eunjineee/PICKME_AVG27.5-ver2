@@ -160,7 +160,6 @@ def recommended_age(request, age):
 
 @api_view(['GET'])
 def movie_search(request, search):
-    movies =  Movie.objects.filter(title__contains=search)[:8]
+    movies = Movie.objects.all().order_by('-release_date').filter(title__contains=search)[:8]
     serializer = MovieListSerializer(movies, many=True)
-    print(serializer.data)
     return Response(serializer.data)
