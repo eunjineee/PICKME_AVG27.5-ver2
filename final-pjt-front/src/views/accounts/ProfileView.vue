@@ -150,7 +150,6 @@ export default {
     }
   },
   created() {
-    // console.log( this.$route.params.username)
     const payload = { username: this.$route.params.username }
     this.getProfileData(payload)
     this.followCheck(payload)

@@ -12,9 +12,9 @@ export default {
   components: {
     HomeView
   },
-  created() {
-    this.$router.push({name: 'MovieView'})
-  }
+  // created() {
+  //   this.$router.push({name: 'MovieView'})
+  // }
 }
 
 </script>

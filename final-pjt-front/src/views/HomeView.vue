@@ -73,9 +73,7 @@ export default {
         .then((res) => {
           this.$store.dispatch('getMovieData', res.data)
         })
-        .catch((err) => { 
-          console.log(err)
-        })}
+      }
     },
     getmovielatest() {
       const movie_length = this.$store.movie_latest
