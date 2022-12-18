@@ -51,7 +51,7 @@
                 required
               ></b-form-input>
               <b-form-invalid-feedback :state="validation3">
-                비밀번호는 4~12자리 이내로 입력해주세요
+                비밀번호는 4~12자리 이내로 입력해주세요.
               </b-form-invalid-feedback>
               <b-form-valid-feedback :state="validation3">
                 <br>
