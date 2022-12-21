@@ -113,12 +113,6 @@ export default {
         this.$store.dispatch("getMovieLatest");
       }
     },
-    getmovielatest() {
-      const movie_length = this.$store.movie_latest;
-      if (movie_length === undefined) {
-        this.$store.dispatch("getMovieLatest");
-      }
-    },
     isLogOut() {
       this.$store.dispatch("logOut", this.isLogin);
     },
