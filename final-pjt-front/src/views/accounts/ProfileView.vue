@@ -10,7 +10,6 @@
         <h1 style="margin-left:20px;">프로필</h1>
         <div>
           <div>
-            <!-- {{profileuser}} -->
             <div class="imgbox">
               <img
               class="profile"
@@ -151,7 +150,6 @@ export default {
     }
   },
   created() {
-    // console.log( this.$route.params.username)
     const payload = { username: this.$route.params.username }
     this.getProfileData(payload)
     this.followCheck(payload)

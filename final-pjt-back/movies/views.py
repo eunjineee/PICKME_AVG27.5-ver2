@@ -9,6 +9,7 @@ from .serializers.movie import MovieListSerializer, MovieSerializer
 from .serializers.review import ReviewListSerializer, ReviewSerializer
 from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework.decorators import api_view
+from django.db.models import Q
 # Create your views here.
 
 # movie_data 가져오기
@@ -156,3 +157,9 @@ def recommended_age(request, age):
             if movie['release_date'][0:4] == str(2022 - (age // 2)):
                 movies_age.append(movie)
         return Response(movies_age)
+
+@api_view(['GET'])
+def movie_search(request, search):
+    movies = Movie.objects.all().order_by('-release_date').filter(title__contains=search)[:8]
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)

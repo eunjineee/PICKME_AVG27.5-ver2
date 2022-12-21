@@ -24,6 +24,7 @@ export default new Vuex.Store({
     movie_latest: [],
     movie_mbti: [],
     movie_age: [],
+    search_movie: [],
     users:[],
     ////////////////////////////////////////accounts//////////////
     token: null,
@@ -64,6 +65,9 @@ export default new Vuex.Store({
       state.movie_age = []
       state.movie_age = movie_age
     },
+    SEARCH_MOVIE(state, searchmovie){
+      state.search_movie = searchmovie
+    },
     ////////////////////////////////////////accounts//////////////
     SIGN_UP(state, token) {
       state.token = token
@@ -89,17 +93,14 @@ export default new Vuex.Store({
       router.push({ name: 'MovieView' })
     },
     GET_NOW_USER(state, payload) {
-      // console.log(payload)
       state.user = payload
     },
     GET_PROFILE_USER(state, payload) {
-      // console.log(payload)
       state.profileuser = payload
     },
     RANDOM_USER(state, users){
       state.users = []
       state.users = users
-      console.log(users)
     },
     ////////////////////////////////////////articles//////////////
     ARTICLE_DELETE(state, article_id) {
@@ -110,7 +111,6 @@ export default new Vuex.Store({
   },
   actions: {
     getArticles(context) {
-      console.log('ddd')
       axios({
         method: 'get',
         url: `${API_URL}/articles/article/`,
@@ -159,6 +159,15 @@ export default new Vuex.Store({
           console.log(err)
       })
     },
+    SearchMovie(context, search){
+      axios.get(`${API_URL}/movies/search/${search}`)
+        .then((res) => {
+          context.commit('SEARCH_MOVIE', res.data)
+        })
+        .catch((err) => { 
+          console.log(err)
+        })
+    },
     ////////////////////////////////////////accounts//////////////
     signUp(context, payload) {
       axios({
@@ -167,7 +176,6 @@ export default new Vuex.Store({
         data: payload
       })
         .then(() => {
-          // console.log(res.data)
           context.dispatch('getUsername', payload.username)
           router.push({ name: 'LogInView' })
         })
@@ -191,7 +199,6 @@ export default new Vuex.Store({
         })
     },
     logIn(context, payload) {
-      // console.log(payload)
       const username = payload.username
       axios({
         method: 'post',
@@ -199,7 +206,6 @@ export default new Vuex.Store({
         data: payload
       })
         .then((res) => {
-          // console.log(res.data)
           context.commit('SAVE_TOKEN', res.data.key)
           context.commit('GET_USERNAME', username)
           context.dispatch('getNowUser',username)
@@ -214,7 +220,6 @@ export default new Vuex.Store({
         url: `${API_URL}/accounts/profile/${username}/`,
       })
         .then((res) => {
-          // console.log(res.data)
           context.commit('GET_NOW_USER', res.data)
         })
         .catch((err) => {
@@ -261,8 +266,10 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`},
       })
       .then((res) => {
-        // console.log('랜덤유저 가져오는 중..',res)
         context.commit('RANDOM_USER', res.data)
+      })
+      .catch(() => {
+        
       })
     },
     ////////////////////////////////////////articles//////////////

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SearchMovie/>
     <div>
       <div class="mainitem-blank-height"></div>
       <h3 class="h3-m">현재 상영작</h3>
@@ -47,9 +48,9 @@
         <!-- {{movie_randomUser_data}} -->
         <span style="display:flex">
           <h3 class="h3-m">{{movie_randomUser_data[0].nickname}}님의 PICK</h3>
-          <button class="btn btn-outline-danger btn-sm mx-3" @click.prevent="random_userpick">랜덤 돌려돌려</button>
+          <button class="btn btn-outline-danger btn-sm mx-3" @click="random_pick">랜덤 돌려돌려</button>
         </span>
-        <div v-if="movie_randomUser_data[0].pickmovies">
+        <div v-if="movie_randomUser_data[0].pickmovies.length > 0">
           <div class="mainitem">
             <MovieCardListItem2
               v-for="movie in movie_randomUser_data[0].pickmovies"
@@ -81,6 +82,7 @@
 import _ from 'lodash'
 import MovieCardListItem from '@/components/movies/MovieCardListItem'
 import MovieCardListItem2 from '@/components/movies/MovieCardListItem2'
+import SearchMovie from '@/components/movies/SearchMovie'
 
 
 export default {
@@ -88,6 +90,7 @@ export default {
   components: {
     MovieCardListItem,
     MovieCardListItem2,
+    SearchMovie,
   },
   data() {
     return {
@@ -95,7 +98,7 @@ export default {
       movie_mbti_data: [],
       movie_age_data: [],
       movie_randomUser_data: [],
-      movie_random_pick_data: [],
+      movie_random_pick_data: []
     }
   },
   created() {
@@ -125,7 +128,6 @@ export default {
     },
     movie_latest() {
       this.movie_latest_data = _.sampleSize(this.$store.state.movie_latest,8)
-      console.log(this.movie_latest_data)
     },
     isLogin() {
       return this.$store.getters.isLogin
@@ -134,14 +136,12 @@ export default {
       this.movie_age_data = _.sampleSize(this.$store.state.movie_age,8)
     },
     mbti() {
-      console.log('얍')
       const mbti = this.$store.state.user.mbti
       if (mbti === 'INFJ' || mbti === 'ISTP' || mbti === 'ENFP') {
         this.movie_mbti_data = _.sampleSize(this.$store.state.movie_latest,8)
       } else if (mbti === 'ESFP' || mbti === 'ESFJ') {
         this.movie_mbti_data = _.sampleSize(this.$store.state.movies,8)
       } else {
-        console.log(mbti)
         this.$store.dispatch('getMovieMbti', mbti)
         this.movie_mbti_data = _.sampleSize(this.$store.state.movie_mbti,8)
         }
@@ -154,17 +154,19 @@ export default {
       this.$store.dispatch('randomUser')
     },
     random_userpick(){
+      console.log(this.$store.state.users)
       this.movie_randomUser_data = _.sampleSize(this.$store.state.users, 1)
     },
     movie_random_pick(){
       this.movie_random_pick_data = _.sampleSize(this.$store.state.movies, 8)
     }
   },
-  // methods:{
-  //   movie_random_pick(){
-  //     this.movie_random_pick_data = _.sampleSize(this.$store.state.movies, 5)
-  //   }
-  // }
+  methods: {
+    random_pick(){
+      this.movie_randomUser_data = []
+      this.movie_randomUser_data = _.sampleSize(this.$store.state.users, 1)
+    },
+  }
 }
 
 </script>
