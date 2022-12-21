@@ -1,20 +1,20 @@
 <template>
   <div style="margin-left: 20px">
-    <div class="upper">
-      <!-- <div class="videotrailer"> -->
-      <YoutubeCard :movie_title="movie_title" />
-      <!-- </div> -->
-      <!-- <img class="upper-img img-center" :src="imgUrl" alt="..." /> -->
-    </div>
-
     <div>
+      <div class="upper">
+        <!-- <div class="videotrailer"> -->
+        <YoutubeCard :movie_title="movie_title" />
+        <!-- </div> -->
+        <!-- <img class="upper-img img-center" :src="imgUrl" alt="..." /> -->
+      </div>
       <img class="poster" :src="imgUrl" alt="..." />
-    </div>
-    <div class="fontbox">
-      <h1>{{ movie?.title }}</h1>
-      <h2>개봉 날짜 : {{ movie?.release_date }}</h2>
-      <h3>평점 : {{ movie?.vote_average }}</h3>
-      <p class="summary-text">{{ movie?.overview }}</p>
+
+      <div class="fontbox">
+        <h1>{{ movie?.title }}</h1>
+        <h2>개봉 날짜 : {{ movie?.release_date }}</h2>
+        <h3>평점 : {{ movie?.vote_average }}</h3>
+        <p class="summary-text">{{ movie?.overview }}</p>
+      </div>
     </div>
     <div class="detailcontainer">
       <div class="button-box" style="">
@@ -173,13 +173,15 @@ export default {
 } */
 
 .poster {
-  margin-top: -500px;
+  margin-top: -400px;
   /* margin-bottom: 50px; */
-  margin-left: 75%;
+  margin-left: 74%;
   /* z-index: 50 !important; */
-  width: 19%;
+  width: 20%;
   /* height: 450px; */
-  border: 2px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-radius: 4px;
   /* opacity: 1 !important; */
   position: relative;
   /* border-image: linear-gradient(45deg, red, orange, yellow, green, blue) 10; */
@@ -187,7 +189,9 @@ export default {
 }
 
 .fontbox {
-  margin-top: -260px;
+  /* width: 800px; */
+  height: 200px;
+  margin-top: -320px;
   margin-left: 30px;
   position: relative;
   /* z-index: 2; */
@@ -196,7 +200,8 @@ export default {
 
 .detailcontainer {
   width: 95%;
-  margin-top: 20px;
+  margin-top: 50px;
+  /* padding-top: 50px; */
   margin-bottom: 20px;
 }
 
@@ -220,7 +225,14 @@ export default {
 }
 
 .summary-text {
-  width: 50%;
+  width: 60%;
+  /* white-space: nowrap; */
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.5em;
 }
 
 .button-box {
