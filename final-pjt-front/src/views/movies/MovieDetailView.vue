@@ -18,7 +18,7 @@
     </div>
     <div class="detailcontainer">
       <div class="button-box" style="">
-        <div style="margin-top: 30px; margin-left: 20px">
+        <div style="margin-left: 20px">
           <span v-if="!pick" @click="choosepick"
             ><span class="button btnPush btnBlueGreen">PICK</span></span
           >
@@ -26,7 +26,7 @@
             ><span class="button btnPush btnBlueGreen">UNPICK</span></span
           >
         </div>
-        <div style="margin-top: 30px">
+        <div>
           <span v-if="!wish" @click="choosewish"
             ><span class="button btnPush btnBlueGreen">WISH</span></span
           >
@@ -164,14 +164,6 @@ export default {
   pointer-events: none;
 }
 
-/* .upper-img {
-  width: 95%;
-  height: 750px;
-  opacity: 0.3;
-  overflow: hidden;
-  z-index: 1;
-} */
-
 .poster {
   margin-top: -400px;
   /* margin-bottom: 50px; */
@@ -179,11 +171,12 @@ export default {
   /* z-index: 50 !important; */
   width: 20%;
   /* height: 450px; */
-  border-right: 2px solid;
-  border-bottom: 2px solid;
-  border-radius: 4px;
+  border-right: 3px solid;
+  border-bottom: 3px solid;
+  border-radius: 3px;
   /* opacity: 1 !important; */
   position: relative;
+  color: darkgrey;
   /* border-image: linear-gradient(45deg, red, orange, yellow, green, blue) 10; */
   /* flex-direction: row-reverse; */
 }
@@ -191,7 +184,7 @@ export default {
 .fontbox {
   /* width: 800px; */
   height: 200px;
-  margin-top: -320px;
+  margin-top: -300px;
   margin-left: 30px;
   position: relative;
   /* z-index: 2; */
@@ -200,7 +193,7 @@ export default {
 
 .detailcontainer {
   width: 95%;
-  margin-top: 50px;
+  margin-top: 100px;
   /* padding-top: 50px; */
   margin-bottom: 20px;
 }
@@ -213,49 +206,30 @@ export default {
   border: 2px solid;
   border-radius: 4px;
   /* border-image: linear-gradient(45deg, red, orange, yellow, green, blue) 10; */
-  /* font-size: 16px; */
-  /* color: #fff; */
-  /* text-align: start; */
-  /* letter-spacing: 5px; */
-  /* background: #020117; */
-}
-
-.videotrailer {
-  /* width: 90%; */
 }
 
 .summary-text {
-  width: 60%;
+  /* margin: 100px; */
+  /* padding: 4px; */
+
+  width: 700px;
+  /* outline: 1px solid white; */
+  white-space: normal;
   /* white-space: nowrap; */
-  word-wrap: break-word;
-  -webkit-line-clamp: 2;
-  line-height: 1.2;
+  /* word-wrap: break-word; */
+  line-height: 1.3;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 2.5em;
+  height: 3.6em;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .button-box {
   display: flex;
 }
-
-/* .bgposter {
-  display: block;
-  position: absolute;
-} */
-
-/* .bg-overlay {
-  display: block;
-  position: absolute;
-  top: 0;
-  min-height: 150vh;
-  content: " ";
-  z-index: 3;
-  backface-visibility: hidden;
-  background: black;
-  background: linear-gradient(77deg, rgba(0, 0, 0, 0.6), transparent 85%);
-  opacity: 1;
-} */
 
 .reviewsize {
   width: 95%;
