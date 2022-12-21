@@ -2,34 +2,67 @@
   <div class="bv-example-row allfont">
     <b-row>
       <b-col xs="4" md="3" lg="2" sm="6">
-        <div id='nav' class="text-center">
+        <div id="nav" class="text-center">
           <nav class="navbar">
-            <ul id='home-ul' class="nav">
+            <ul id="home-ul" class="nav">
               <li class="nav-item">
-                <img class="nav-button-img" src="@/assets/PICME2.png" alt="">
+                <img class="nav-button-img" src="@/assets/PICME2.png" alt="" />
               </li>
               <li class="nav-item">
-                <router-link class="nav-link nav-button button--winona" data-text="Go Movie" :to="{ name: 'MovieView' }">
-                  <span>홈</span></router-link>
+                <router-link
+                  style="align-item: center"
+                  class="nav-link nav-button button--winona"
+                  data-text="Go Movie"
+                  :to="{ name: 'MovieView' }"
+                >
+                  <span>홈</span></router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link class="nav-link nav-button button--winona" data-text="Go Article" :to="{ name: 'ArticleView' }">
-                  <span>게시판</span></router-link>
+                <router-link
+                  class="nav-link nav-button button--winona"
+                  data-text="Go Article"
+                  :to="{ name: 'ArticleView' }"
+                >
+                  <span>게시판</span></router-link
+                >
               </li>
               <li v-if="isLogin">
-                <router-link class="nav-link nav-button button--winona" data-text="Go Profile" :to="{ name: 'ProfileView', params: { username: username } }" v-if="isLogin">
-                  <span>{{ nickname }}</span></router-link>
+                <router-link
+                  class="nav-link nav-button button--winona"
+                  data-text="Go Profile"
+                  :to="{ name: 'ProfileView', params: { username: username } }"
+                  v-if="isLogin"
+                >
+                  <span>{{ nickname }}</span></router-link
+                >
               </li>
               <li>
-                <router-link class="nav-link nav-button button--winona" data-text="Go Sign Up" :to="{ name: 'LogInView' }" v-if="!isLogin">
-                  <span>로그인</span></router-link>
-                <div class="nav-link nav-button button--winona" data-text="Go Log In" @click="isLogOut" v-if="isLogin">
+                <router-link
+                  class="nav-link nav-button button--winona"
+                  data-text="Go Sign Up"
+                  :to="{ name: 'LogInView' }"
+                  v-if="!isLogin"
+                >
+                  <span>로그인</span></router-link
+                >
+                <div
+                  class="nav-link nav-button button--winona"
+                  data-text="Go Log In"
+                  @click="isLogOut"
+                  v-if="isLogin"
+                >
                   <span>로그아웃</span>
                 </div>
               </li>
               <li class="nav-item" v-if="!isLogin">
-                <router-link class="nav-link nav-button button--winona" data-text="Go Sign Up" :to="{ name: 'SignUpView' }">
-                  <span>회원가입</span></router-link>
+                <router-link
+                  class="nav-link nav-button button--winona"
+                  data-text="Go Sign Up"
+                  :to="{ name: 'SignUpView' }"
+                >
+                  <span>회원가입</span></router-link
+                >
               </li>
             </ul>
           </nav>
@@ -37,59 +70,61 @@
         <div class="nav-space"></div>
       </b-col>
       <b-col xs="8" md="9" lg="10" sm="6">
-        <router-view/>
+        <router-view />
       </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
-const API_URL = 'http://127.0.0.1:8000'
+const API_URL = "http://127.0.0.1:8000";
 
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   computed: {
     isLogin() {
-      return this.$store.getters.isLogin
-      },
+      return this.$store.getters.isLogin;
+    },
     username() {
-      return this.$store.state.username
+      return this.$store.state.username;
     },
     nickname() {
-      return this.$store.state.user.nickname
-    }
+      return this.$store.state.user.nickname;
+    },
   },
   created() {
-    this.getmoviedata()
-    this.getmovielatest()
+    this.getmoviedata();
+    this.getmovielatest();
   },
   methods: {
     getmoviedata() {
-      const movie_length_latest = this.$store.movie_latest
+      const movie_length_latest = this.$store.movie_latest;
       if (movie_length_latest === undefined) {
-      const movie_length = this.$store.movies
-      console.log(movie_length)
-      axios.get(`${API_URL}/movies`)
-        .then((res) => {
-          this.$store.dispatch('getMovieData', res.data)
-        })
-        .catch((err) => { 
-          console.log(err)
-        })}
-    },
-    getmovielatest() {
-      const movie_length = this.$store.movie_latest
-      if (movie_length === undefined) {
-      this.$store.dispatch('getMovieLatest')
+        const movie_length = this.$store.movies;
+        console.log(movie_length);
+        axios
+          .get(`${API_URL}/movies`)
+          .then((res) => {
+            this.$store.dispatch("getMovieData", res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
-    isLogOut(){
-      this.$store.dispatch('logOut',this.isLogin)
-    }
+    getmovielatest() {
+      const movie_length = this.$store.movie_latest;
+      if (movie_length === undefined) {
+        this.$store.dispatch("getMovieLatest");
+      }
+    },
+    isLogOut() {
+      this.$store.dispatch("logOut", this.isLogin);
+    },
   },
-}
+};
 </script>
 
 <style>
@@ -97,25 +132,25 @@ export default {
 #nav {
   background-color: #121111;
   min-height: 1000px;
-  height: 1500px;
+  height: 1200px;
 }
-#home-ul>li {
-  width:100%;
-  margin:0 auto;
+#home-ul > li {
+  width: 100%;
+  margin: 0 auto;
   padding: 10%;
-  flex-direction:column;
-  font-size:x-large;
-  justify-content: space-around
+  flex-direction: column;
+  font-size: x-large;
+  justify-content: space-around;
 }
-li>img {
-  width:100px;
+li > img {
+  width: 100px;
 }
 #nav-space {
   height: 90%;
 }
 .nav-button {
-  min-width: 150px;
-  max-width: 350px;
+  min-width: 100%;
+  max-width: 100%;
   display: block;
   margin: 0.5em;
   padding: 0.5em 1em;
@@ -127,15 +162,15 @@ li>img {
   -moz-osx-font-smoothing: grayscale;
 }
 .nav-button-img {
-  min-width: 200px;
-  max-width: 420px;
+  min-width: 100%;
+  max-width: 100%;
   display: block;
   border: none;
   background: none;
   color: inherit;
   position: relative;
   z-index: 1;
-  margin: 0 auto; 
+  margin: 0 auto;
   padding: 0;
   -moz-osx-font-smoothing: grayscale;
 }
