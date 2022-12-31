@@ -1,24 +1,24 @@
 <template>
   <div style="margin-left: 20px">
-    <div class="upper">
-      <!-- <div class="videotrailer"> -->
-      <YoutubeCard :movie_title="movie_title" />
-      <!-- </div> -->
-      <!-- <img class="upper-img img-center" :src="imgUrl" alt="..." /> -->
-    </div>
-
     <div>
+      <div class="upper">
+        <!-- <div class="videotrailer"> -->
+        <YoutubeCard :movie_title="movie_title" />
+        <!-- </div> -->
+        <!-- <img class="upper-img img-center" :src="imgUrl" alt="..." /> -->
+      </div>
       <img class="poster" :src="imgUrl" alt="..." />
-    </div>
-    <div class="fontbox">
-      <h1>{{ movie?.title }}</h1>
-      <h2>개봉 날짜 : {{ movie?.release_date }}</h2>
-      <h3>평점 : {{ movie?.vote_average }}</h3>
-      <p class="summary-text">{{ movie?.overview }}</p>
+
+      <div class="fontbox">
+        <h1>{{ movie?.title }}</h1>
+        <h2>개봉 날짜 : {{ movie?.release_date }}</h2>
+        <h3>평점 : {{ movie?.vote_average }}</h3>
+        <p class="summary-text">{{ movie?.overview }}</p>
+      </div>
     </div>
     <div class="detailcontainer">
       <div class="button-box" style="">
-        <div style="margin-top: 30px; margin-left: 20px">
+        <div style="margin-left: 20px">
           <span v-if="!pick" @click="choosepick"
             ><span class="button btnPush btnBlueGreen">PICK</span></span
           >
@@ -26,7 +26,7 @@
             ><span class="button btnPush btnBlueGreen">UNPICK</span></span
           >
         </div>
-        <div style="margin-top: 30px">
+        <div>
           <span v-if="!wish" @click="choosewish"
             ><span class="button btnPush btnBlueGreen">WISH</span></span
           >
@@ -164,30 +164,27 @@ export default {
   pointer-events: none;
 }
 
-/* .upper-img {
-  width: 95%;
-  height: 750px;
-  opacity: 0.3;
-  overflow: hidden;
-  z-index: 1;
-} */
-
 .poster {
-  margin-top: -500px;
+  margin-top: -400px;
   /* margin-bottom: 50px; */
-  margin-left: 75%;
+  margin-left: 74%;
   /* z-index: 50 !important; */
-  width: 19%;
+  width: 20%;
   /* height: 450px; */
-  border: 2px solid;
+  border-right: 3px solid;
+  border-bottom: 3px solid;
+  border-radius: 3px;
   /* opacity: 1 !important; */
   position: relative;
+  color: darkgrey;
   /* border-image: linear-gradient(45deg, red, orange, yellow, green, blue) 10; */
   /* flex-direction: row-reverse; */
 }
 
 .fontbox {
-  margin-top: -260px;
+  /* width: 800px; */
+  height: 200px;
+  margin-top: -300px;
   margin-left: 30px;
   position: relative;
   /* z-index: 2; */
@@ -196,7 +193,8 @@ export default {
 
 .detailcontainer {
   width: 95%;
-  margin-top: 20px;
+  margin-top: 100px;
+  /* padding-top: 50px; */
   margin-bottom: 20px;
 }
 
@@ -208,42 +206,30 @@ export default {
   border: 2px solid;
   border-radius: 4px;
   /* border-image: linear-gradient(45deg, red, orange, yellow, green, blue) 10; */
-  /* font-size: 16px; */
-  /* color: #fff; */
-  /* text-align: start; */
-  /* letter-spacing: 5px; */
-  /* background: #020117; */
-}
-
-.videotrailer {
-  /* width: 90%; */
 }
 
 .summary-text {
-  width: 50%;
+  /* margin: 100px; */
+  /* padding: 4px; */
+
+  width: 700px;
+  /* outline: 1px solid white; */
+  white-space: normal;
+  /* white-space: nowrap; */
+  /* word-wrap: break-word; */
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 3.6em;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .button-box {
   display: flex;
 }
-
-/* .bgposter {
-  display: block;
-  position: absolute;
-} */
-
-/* .bg-overlay {
-  display: block;
-  position: absolute;
-  top: 0;
-  min-height: 150vh;
-  content: " ";
-  z-index: 3;
-  backface-visibility: hidden;
-  background: black;
-  background: linear-gradient(77deg, rgba(0, 0, 0, 0.6), transparent 85%);
-  opacity: 1;
-} */
 
 .reviewsize {
   width: 95%;
