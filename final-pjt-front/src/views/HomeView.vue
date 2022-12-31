@@ -55,6 +55,16 @@
                   <span>로그아웃</span>
                 </div>
               </li>
+              <li>
+                <button
+                  class="nav-link nav-button button--winona"
+                  data-text="Go Sign Up"
+                  @click="sociallogin" 
+                >
+                  <span>소셜 로그인</span></button
+                >
+              </li>
+
               <li class="nav-item" v-if="!isLogin">
                 <router-link
                   class="nav-link nav-button button--winona"
@@ -116,6 +126,12 @@ export default {
     isLogOut() {
       this.$store.dispatch("logOut", this.isLogin);
     },
+    sociallogin(){
+      axios.get(`${API_URL}/accounts/kakao/login`)
+        .then((res) => 
+          console.log(res)
+        )
+    }
   },
 };
 </script>

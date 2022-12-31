@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'accounts',
     'articles',
     'movies',
-    
 
     # CORS policy
     "corsheaders",
@@ -67,9 +66,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'loginapp.apps.LoginappConfig',
+    'allauth.socialaccount.providers.kakao',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 
 REST_FRAMEWORK = {
@@ -193,3 +194,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
 ACCOUNT_EMAIL_VERIFICATION = "none" # 회원가입 과정에서 email 인증 사용 x
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'

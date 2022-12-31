@@ -3,13 +3,34 @@
     <SearchMovie/>
     <div>
       <div class="mainitem-blank-height"></div>
-      <h3 class="h3-m">현재 상영작</h3>
-      <div class="mainitem">
-        <MovieCardListItem2
-          v-for="movie in movie_latest_data"
+      <div v-if="isLogin">
+        <!-- {{movie_randomUser_data}} -->
+        <span style="display:flex">
+          <h3 class="h3-m">{{movie_randomUser_data[0].nickname}}님의 PICK</h3>
+          <button class="btn btn-outline-danger btn-sm mx-3" @click="random_pick">랜덤 돌려돌려</button>
+        </span>
+        <div v-if="movie_randomUser_data[0].pickmovies.length > 0">
+          <div class="mainitem">
+            <MovieCardListItem2
+              v-for="movie in movie_randomUser_data[0].pickmovies"
+              :key="movie.id"
+              :movie="movie"
+            />
+          </div>
+        </div>
+        <div v-else>
+          <h5 class="h3-m">{{movie_randomUser_data[0].nickname}}님의 PICKLIST가 없습니다. 랜덤 버튼을 눌러보세요!</h5>
+        </div>
+      </div>
+      <div v-if="!isLogin">
+        <h3>랜덤추천 - 로그인 후 PICK LIST를 둘러보세요!</h3>
+        <div class="mainitem">
+          <MovieCardListItem2
+          v-for="movie in movie_random_pick_data"
           :key="movie.id"
           :movie="movie"
-        />
+          />
+        </div>
       </div>
     </div>
     <div class="mt-5 "></div>
@@ -42,36 +63,16 @@
       </div>
     </div>
     <div class="mainitem-blank-height"></div>
-    <div class="mainitem-blank-height"></div>
+
     <div>
-      <div v-if="isLogin">
-        <!-- {{movie_randomUser_data}} -->
-        <span style="display:flex">
-          <h3 class="h3-m">{{movie_randomUser_data[0].nickname}}님의 PICK</h3>
-          <button class="btn btn-outline-danger btn-sm mx-3" @click="random_pick">랜덤 돌려돌려</button>
-        </span>
-        <div v-if="movie_randomUser_data[0].pickmovies.length > 0">
-          <div class="mainitem">
-            <MovieCardListItem2
-              v-for="movie in movie_randomUser_data[0].pickmovies"
-              :key="movie.id"
-              :movie="movie"
-            />
-          </div>
-        </div>
-        <div v-else>
-          <h5 class="h3-m">{{movie_randomUser_data[0].nickname}}님의 PICKLIST가 없습니다. 랜덤 버튼을 눌러보세요!</h5>
-        </div>
-      </div>
-      <div v-if="!isLogin">
-        <h3>랜덤추천 - 로그인 후 PICK LIST를 둘러보세요!</h3>
-        <div class="mainitem">
-          <MovieCardListItem2
-          v-for="movie in movie_random_pick_data"
+      <div class="mainitem-blank-height"></div>
+      <h3 class="h3-m">현재 상영작</h3>
+      <div class="mainitem">
+        <MovieCardListItem2
+          v-for="movie in movie_latest_data"
           :key="movie.id"
           :movie="movie"
-          />
-        </div>
+        />
       </div>
     </div>
   </div>
@@ -154,7 +155,6 @@ export default {
       this.$store.dispatch('randomUser')
     },
     random_userpick(){
-      console.log(this.$store.state.users)
       this.movie_randomUser_data = _.sampleSize(this.$store.state.users, 1)
     },
     movie_random_pick(){
