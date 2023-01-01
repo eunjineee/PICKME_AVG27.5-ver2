@@ -99,10 +99,6 @@ class KakaoLogin(SocialLoginView):
     client_class = OAuth2Client
     callback_url = KAKAO_CALLBACK_URI
 
-def kakao_logout(request):
-    #logout?client_id=${REST_API_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}
-    #accept = requests.post(
-            f"{BASE_URL}accounts/kakao/logout/", data=data)
 
 @api_view(['GET', 'PUT'])
 def profile_or_edit(request, username):
