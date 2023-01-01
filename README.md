@@ -7,6 +7,12 @@
 </div>
 <br/>
 
+## 버전 <a href="https://github.com/goeom77/AVG27.5" target="_blank"> Go Ver1</a>
+
+<a href="https://prickly-melon-45e.notion.site/887ea49bbaef4ea2a1e76f2c7ef150ea?v=39ef0c5dc5994692935e2f6fe2a85ef3" target="_blank"> Go Notion </a>
+
+## 팀
+
 팀명 :  AVG 27.5   
 
 팀원: 양은진, 엄형규, 차은혁
